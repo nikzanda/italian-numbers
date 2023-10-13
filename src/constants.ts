@@ -19,7 +19,7 @@ export const zeroNineteen = [
   'diciassette',
   'diciotto',
   'diciannove',
-]
+];
 
 export const tens = [
   'venti',
@@ -30,9 +30,9 @@ export const tens = [
   'settanta',
   'ottanta',
   'novanta',
-]
+];
 
-export const hundred = 'cento'
-export const thousands = ['mille', 'mila']
-export const millions = ['milione', 'milioni']
-export const billions = ['miliardo', 'miliardi']
+export const hundred = 'cento';
+export const thousands = ['mille', 'mila'];
+export const millions = ['milione', 'milioni'];
+export const billions = ['miliardo', 'miliardi'];
