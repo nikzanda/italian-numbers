@@ -28,7 +28,7 @@ describe('ones tests', () => {
   test('1 === uno', () => {
     expect(converter(1)).toBe('uno');
   });
-  test('100 === uno', () => {
+  test('100 === cento', () => {
     expect(converter(100)).toBe('cento');
   });
   test('1000 === mille', () => {
