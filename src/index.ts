@@ -3,9 +3,6 @@ import {
 } from './constants';
 
 const tensConverter = (n: number): string => {
-  if (n > 99) {
-    throw new Error('greater than 99');
-  }
   if (n < 20) {
     return zeroNineteen[n];
   }
@@ -26,14 +23,6 @@ const tensConverter = (n: number): string => {
 };
 
 const hundredsConverter = (n: number): string => {
-  if (n > 999) {
-    throw new Error('greater than 999');
-  }
-
-  if (n < 100) {
-    throw new Error('smaller than 100');
-  }
-
   const firstDigit = Math.floor(n / 100);
   if (firstDigit === 1) {
     return hundred;
@@ -58,6 +47,7 @@ const wordCalculator = (n: number): string => {
       const word = hundredsConverter(n);
       return word.slice(0, word.length - 1) + wordCalculator(n % 100);
     }
+
     return hundredsConverter(n) + wordCalculator(n % 100);
   }
   // thousands
@@ -130,26 +120,14 @@ const converter = (number: number): string => {
   }
   const n = Math.abs(number);
 
-  return prepend + wordCalculator(n);
+  let result = prepend + wordCalculator(n);
+  if (result.endsWith('tre') && result !== 'tre') {
+    result = result.replace(/.$/, 'é');
+  }
 
-  // TODO: tré
-  // if (n === 3) {
-  //   return `${prepend}tre`;
-  // }
-
-  // let result = prepend + wordCalculator(n);
-  // if (result.includes(' tré')) {
-  //   result = result.replace(' tré', ' tre');
-  // }
-  // if (result.includes('tré ')) {
-  //   result = result.replace('tré ', 'tre ');
-  // }
-
-  // return result;
+  // const regex = /(?<=\w+)tre/g;
+  result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
+  return result;
 };
-
-// for (let i = 1000000000; i < 999999999999; i += 10000003) {
-//   console.log(i, converter(i));
-// }
 
 export default converter;
