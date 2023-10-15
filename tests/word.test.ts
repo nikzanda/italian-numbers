@@ -24,6 +24,24 @@ describe('exceptions', () => {
   });
 });
 
+describe('ones tests', () => {
+  test('1 === uno', () => {
+    expect(converter(1)).toBe('uno');
+  });
+  test('100 === uno', () => {
+    expect(converter(100)).toBe('cento');
+  });
+  test('1000 === mille', () => {
+    expect(converter(1000)).toBe('mille');
+  });
+  test('1000000 === un milione', () => {
+    expect(converter(1000000)).toBe('un milione');
+  });
+  test('1000000000 === un miliardo', () => {
+    expect(converter(1000000000)).toBe('un miliardo');
+  });
+});
+
 describe('threes tests', () => {
   test('3 === tre', () => {
     expect(converter(3)).toBe('tre');
