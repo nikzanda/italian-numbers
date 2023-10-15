@@ -95,9 +95,7 @@ describe('random tests', () => {
   test('2398406 === due milioni e trecentonovantottomilaquattrocentosei', () => {
     expect(converter(2398406)).toBe('due milioni e trecentonovantottomilaquattrocentosei');
   });
-  test('Infinity === infinito', () => {
-    expect(converter(Infinity)).toBe('infinito');
-  });
+
   test('9654367 === nove milioni e seicentocinquantaquattromilatrecentosessantasette', () => {
     expect(converter(9654367)).toBe('nove milioni e seicentocinquantaquattromilatrecentosessantasette');
   });
@@ -106,5 +104,23 @@ describe('random tests', () => {
   });
   test('999999999999 === novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
     expect(converter(999999999999)).toBe('novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove');
+  });
+});
+
+describe('min-max', () => {
+  test('999999999999 === novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
+    expect(converter(999999999999)).toBe('novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove');
+  });
+
+  test('-999999999999 === meno novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
+    expect(converter(-999999999999)).toBe('meno novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove');
+  });
+
+  test('0 === zero', () => {
+    expect(converter(0)).toBe('zero');
+  });
+
+  test('Infinity === infinito', () => {
+    expect(converter(Infinity)).toBe('infinito');
   });
 });
