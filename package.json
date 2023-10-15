@@ -2,14 +2,28 @@
   "name": "italian-numbers",
   "version": "0.0.0",
   "description": "Converts a number to an italian word representation",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "node",
+    "javascript",
+    "typescript",
+    "italian",
+    "numbers",
+    "converter"
+  ],
   "repository": "git@github.com:nikzanda/italian-numbers.git",
   "author": "Nicolò Zandarin <nikzanda@hotmail.it>",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "watch": "nodemon ./src/index.ts",
     "lint": "eslint . --ext .js,.ts",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

@@ -32,7 +32,6 @@ const hundredsConverter = (n: number): string => {
 };
 
 const wordCalculator = (n: number): string => {
-  // eslint-disable-next-line no-bitwise
   const digitsNumber = Math.log(n) * Math.LOG10E + 1 | 0;
 
   if (digitsNumber < 3) {
@@ -125,7 +124,6 @@ const converter = (number: number): string => {
     result = result.replace(/.$/, 'é');
   }
 
-  // const regex = /(?<=\w+)tre/g;
   result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
   return result;
 };

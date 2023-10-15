@@ -32,5 +32,6 @@ module.exports = {
       },
     ],
     'no-plusplus': 'off',
+    'no-bitwise': 'off',
   },
 };
