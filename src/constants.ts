@@ -34,5 +34,7 @@ export const tens = [
 
 export const hundred = 'cento';
 export const thousands = ['mille', 'mila'];
-export const millions = ['milione', 'milioni'];
-export const billions = ['miliardo', 'miliardi'];
+export const millions = ['un milione', ' milioni'];
+export const billions = ['un miliardo', ' miliardi'];
+
+export const and = ' e ';
