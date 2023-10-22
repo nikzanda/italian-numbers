@@ -361,6 +361,36 @@ describe('first thirty plural female numbers', () => {
   });
 });
 
+describe('exceptions', () => {
+  test('greater than 999999999999', () => {
+    expect(() => {
+      ordinalConverter(9999999999991);
+    }).toThrow('greater than 999999999999');
+  });
+  test('not a number', () => {
+    expect(() => {
+      ordinalConverter(Number('string'));
+    }).toThrow('not a number');
+  });
+  test('negative number not allowed', () => {
+    expect(() => {
+      ordinalConverter(-1);
+    }).toThrow('negative number not allowed');
+  });
+});
+
+describe('min-max', () => {
+  test('999999999999 === novecentonovantanovemiliardinovecentonovantanovemilioninovecentonovantanovemilanovecentonovantanovesimo', () => {
+    expect(ordinalConverter(999999999999)).toBe('novecentonovantanovemiliardinovecentonovantanovemilioninovecentonovantanovemilanovecentonovantanovesimo');
+  });
+  test('0 === zeresimo', () => {
+    expect(ordinalConverter(0)).toBe('zeresimo');
+  });
+  test('Infinity === infinitesimo', () => {
+    expect(ordinalConverter(Infinity)).toBe('infinitesimo');
+  });
+});
+
 describe('random tests', () => {
   test('1000 === millesimo', () => {
     expect(ordinalConverter(1000)).toBe('millesimo');
@@ -380,7 +410,16 @@ describe('random tests', () => {
   test('1000000008 === miliardottesimo', () => {
     expect(ordinalConverter(1000000008)).toBe('miliardottesimo');
   });
+  test('2000 === duemillesimo', () => {
+    expect(ordinalConverter(2000)).toBe('duemillesimo');
+  });
+  test('2000000001 === duemiliardunesimo', () => {
+    expect(ordinalConverter(2000000001)).toBe('duemiliardunesimo');
+  });
   test('456799123 === quattrocentocinquantaseimilionisettecentonovantanovemilacentoventitreesimo', () => {
     expect(ordinalConverter(456799123)).toBe('quattrocentocinquantaseimilionisettecentonovantanovemilacentoventitreesimo');
+  });
+  test('103 === centotreesimo', () => {
+    expect(ordinalConverter(103)).toBe('centotreesimo');
   });
 });

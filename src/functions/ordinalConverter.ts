@@ -11,8 +11,18 @@ const converter = (n: number): string => {
     return zeroTenOrdinals[n];
   }
 
-  // TODO: miliardesimo, miliardottesimo ecc...
   let word = cardinalConverter(n);
+
+  word = word.replaceAll(' e ', ' ');
+  word = word.replace(/([io])\s([ou])/g, (_match, p1, p2) => {
+    if (p2 === 'o') {
+      return p1;
+    }
+    if (p2 === 'u') {
+      return p2;
+    }
+    return '';
+  });
   word = word.replaceAll(/un\s/g, '');
   word = word.replaceAll(/\se\s/g, '');
   word = word.replaceAll(' ', '');
@@ -37,9 +47,11 @@ const ordinalConverter = (
   number: number,
   options: Options = { female: false, plural: false },
 ): string => {
-  const n = Math.abs(number);
+  if (number < 0) {
+    throw new Error('negative number not allowed');
+  }
 
-  const result = converter(n);
+  const result = converter(number);
 
   const { female, plural } = options;
 
