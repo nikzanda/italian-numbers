@@ -21,6 +21,20 @@ export const zeroNineteen = [
   'diciannove',
 ];
 
+export const zeroTenOrdinals = [
+  'zeresimo',
+  'primo',
+  'secondo',
+  'terzo',
+  'quarto',
+  'quinto',
+  'sesto',
+  'settimo',
+  'ottavo',
+  'nono',
+  'decimo',
+];
+
 export const tens = [
   'venti',
   'trenta',
