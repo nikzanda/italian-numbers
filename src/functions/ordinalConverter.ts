@@ -24,7 +24,8 @@ const converter = (n: number): string => {
     return '';
   });
   word = word.replaceAll(/un\s/g, '');
-  word = word.replaceAll(/\se\s/g, '');
+  word = word.replaceAll(/ouno$/g, 'uno');
+  word = word.replaceAll(/ootto$/g, 'otto');
   word = word.replaceAll(' ', '');
 
   const lastDigit = n % 10;
@@ -32,10 +33,12 @@ const converter = (n: number): string => {
   if (n % 100 !== 13 && lastDigit === 3) {
     return `${word.replace(/.$/, 'e')}esimo`;
   }
-  if (n > 20 && lastDigit === 6) {
+  if (n % 100 !== 16 && lastDigit === 6) {
     return `${word}esimo`;
   }
-
+  if (n % 100 === 10) {
+    return word.replace(/dieci$/g, 'decimo');
+  }
   if (word.endsWith('mila')) {
     return word.replace(/mila/, 'millesimo');
   }

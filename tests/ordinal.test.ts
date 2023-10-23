@@ -391,9 +391,33 @@ describe('min-max', () => {
   });
 });
 
+describe('hundreds tests', () => {
+  test('101 === centunesimo', () => {
+    expect(ordinalConverter(101)).toBe('centunesimo');
+  });
+  test('108 === centottesimo', () => {
+    expect(ordinalConverter(108)).toBe('centottesimo');
+  });
+  test('110 === centodecimo', () => {
+    expect(ordinalConverter(110)).toBe('centodecimo');
+  });
+  test('116 === centosedicesimo', () => {
+    expect(ordinalConverter(116)).toBe('centosedicesimo');
+  });
+});
+
 describe('random tests', () => {
+  test('801100 === ottocentounomilacentesimo', () => {
+    expect(ordinalConverter(801100)).toBe('ottocentounomilacentesimo');
+  });
+  test('108416 === centoottomilaquattrocentosedicesimo', () => {
+    expect(ordinalConverter(108416)).toBe('centoottomilaquattrocentosedicesimo');
+  });
   test('1000 === millesimo', () => {
     expect(ordinalConverter(1000)).toBe('millesimo');
+  });
+  test('1110 === millecentodecimo', () => {
+    expect(ordinalConverter(1110)).toBe('millecentodecimo');
   });
   test('1000000 === milionesimo', () => {
     expect(ordinalConverter(1000000)).toBe('milionesimo');

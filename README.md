@@ -2,15 +2,50 @@
 
 Converts a number to an italian word representation.
 
-Works with positive and negative integers from __-999999999999__ (meno novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove) to __999999999999__ (novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove).
+Works with positive and negative integers from **-999999999999** (meno novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove) to **999999999999** (novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove).
 
-Also works with __Infinity__ (infinito).
+The representation can be a cardinal number (uno, due, tre...) or an ordinal number (primo, secondo, terzo). Ordinal numbers can also be translated in feminine form (prima, seconda, terza...), in plural form (primi, secondi, terzi...) or plural feminine (prime, seconde, terze...).
 
-## usage
+Also works with `Infinity` (infinito).
+
+## Installation
+
+Install using
+
+```sh
+npm install --save italian-numbers
+```
+
+or
+
+```sh
+yarn add --save italian-numbers
+```
+
+## Usage
 
 ```js
-import converter from 'italian-numbers'
+import { cardinalConverter, ordinalConverter } from "italian-numbers";
 
-// returns 'uno'
-converter(1);
+// Cardinal numbers representation
+cardinalConverter(1); // 'uno'
+cardinalConverter(90); // 'novanta'
+cardinalConverter(709); // 'settecentonove'
+
+// Ordinal numbers representation
+ordinalConverter(1); // 'primo'
+ordinalConverter(10); // 'decimo'
+ordinalConverter(63); // 'sessantatreesimo'
+
+ordinalConverter(1, { female: true }); // 'prima'
+ordinalConverter(15, { female: true }); // 'quindicesima'
+ordinalConverter(109, { female: true }); // 'centonovesima'
+
+ordinalConverter(1, { plural: true }); // 'primi'
+ordinalConverter(18, { plural: true }); // 'diciottesimi'
+ordinalConverter(89, { plural: true }); // 'ottantanovesimi'
+
+ordinalConverter(1, { plural: true, female: true }); // 'prime'
+ordinalConverter(70, { plural: true, female: true }); // 'settantesime'
+ordinalConverter(110, { plural: true, female: true }); // 'centodecime'
 ```
