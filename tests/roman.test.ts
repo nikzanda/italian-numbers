@@ -93,9 +93,9 @@ describe('exceptions', () => {
       romanConverter(Number('string'));
     }).toThrow('not a number');
   });
-  test('minor than 1', () => {
+  test('lower than 1', () => {
     expect(() => {
       romanConverter(0);
-    }).toThrow('minor than 1');
+    }).toThrow('lower than 1');
   });
 });

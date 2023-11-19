@@ -5,15 +5,6 @@ import {
   romanUnits,
 } from '../constants/constants';
 
-const wordCalculator = (n: number): string => {
-  const unit = n % 10;
-  const ten = Math.floor(n / 10) % 10;
-  const hundred = Math.floor(n / 100) % 10;
-  const thousand = Math.floor(n / 1000) % 10;
-
-  return `${romanThousands[thousand]}${romanHundreds[hundred]}${romanTens[ten]}${romanUnits[unit]}`;
-};
-
 const romanConverter = (number: number): string => {
   if (Number.isNaN(number)) {
     throw new Error('not a number');
@@ -27,14 +18,15 @@ const romanConverter = (number: number): string => {
   }
 
   if (number < 1) {
-    throw new Error('minor than 1');
+    throw new Error('lower than 1');
   }
 
-  const n = Math.abs(number);
+  const unit = number % 10;
+  const ten = Math.floor(number / 10) % 10;
+  const hundred = Math.floor(number / 100) % 10;
+  const thousand = Math.floor(number / 1000) % 10;
 
-  let result = wordCalculator(n);
-
-  result = result.replaceAll('0', '');
+  const result = `${romanThousands[thousand]}${romanHundreds[hundred]}${romanTens[ten]}${romanUnits[unit]}`;
   return result;
 };
 
