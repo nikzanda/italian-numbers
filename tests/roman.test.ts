@@ -20,6 +20,9 @@ describe('random numbers', () => {
   test('79 === LXXIX', () => {
     expect(romanConverter(79)).toBe('LXXIX');
   });
+  test('Infinity === infinitum', () => {
+    expect(romanConverter(Infinity)).toBe('infinitum');
+  });
 });
 
 describe('tens', () => {

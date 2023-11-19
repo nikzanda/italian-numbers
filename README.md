@@ -1,12 +1,18 @@
 # italian-numbers
 
-Converts a number to an italian word representation.
+### Converts a number to an italian word representation.
 
 Works with positive and negative integers from **-999999999999** (meno novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove) to **999999999999** (novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove).
 
 The representation can be a cardinal number (uno, due, tre...) or an ordinal number (primo, secondo, terzo). Ordinal numbers can also be translated in feminine form (prima, seconda, terza...), in plural form (primi, secondi, terzi...) or plural feminine (prime, seconde, terze...).
 
 Also works with `Infinity` (infinito).
+
+### Converts an Arabic number to a Roman number and vice versa
+
+Works with positive integers from **1** (I) to **3999** (MMMCMXCIX).
+
+Also works with `Infinity` (infinitum).
 
 ## Installation
 
@@ -25,7 +31,12 @@ yarn add --save italian-numbers
 ## Usage
 
 ```js
-import { cardinalConverter, ordinalConverter } from "italian-numbers";
+import {
+  cardinalConverter,
+  ordinalConverter,
+  romanConverter,
+  arabicConverter,
+} from "italian-numbers";
 
 // Cardinal numbers representation
 cardinalConverter(1); // 'uno'
@@ -48,4 +59,14 @@ ordinalConverter(89, { plural: true }); // 'ottantanovesimi'
 ordinalConverter(1, { plural: true, female: true }); // 'prime'
 ordinalConverter(70, { plural: true, female: true }); // 'settantesime'
 ordinalConverter(110, { plural: true, female: true }); // 'centodecime'
+
+// Arabic to Roman
+romanConverter(1); // I
+romanConverter(79); // LXXIX
+romanConverter(2317); // MMCCCXVII
+
+// Roman to Arabic
+arabicConverter('MD'); // 1500
+arabicConverter('CDXC'); // 490
+arabicConverter('MCMXC'); // 1990
 ```
