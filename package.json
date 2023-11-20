@@ -29,7 +29,7 @@
     "watch": "nodemon ./src/index.ts",
     "lint": "eslint . --ext .js,.ts",
     "test": "jest",
-    "build": "tsup",
+    "build": "npx tsup",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
