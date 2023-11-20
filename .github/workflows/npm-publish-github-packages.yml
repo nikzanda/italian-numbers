@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
-      - name: Build 🔧
-        run: yarn build
+      - name: Install dependencies and build 🔧
+        run: yarn && yarn build
       - name: Run tests
         run: yarn test
       - name: Publish package on NPM 📦
