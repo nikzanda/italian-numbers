@@ -1,4 +1,5 @@
 import { romanNumerals } from '../constants/constants';
+import romanConverter from './romanConverter';
 
 export const arabicConverter = (romanNumber: string): number => {
   if (romanNumber === 'infinitum') {
@@ -23,6 +24,17 @@ export const arabicConverter = (romanNumber: string): number => {
     }
 
     number += arabicNumber;
+  }
+
+  let isValid: boolean;
+  try {
+    isValid = romanNumber === romanConverter(number);
+  } catch {
+    throw new Error('invalid roman number');
+  }
+
+  if (!isValid) {
+    throw new Error('invalid roman number');
   }
 
   return number;

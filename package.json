@@ -6,12 +6,18 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "keywords": [
-    "node",
-    "javascript",
-    "typescript",
+    "italian-numbers",
     "italian",
     "numbers",
-    "converter"
+    "converter",
+    "convert",
+    "number",
+    "word",
+    "text",
+    "natural",
+    "language",
+    "roman",
+    "arabic"
   ],
   "repository": "git@github.com:nikzanda/italian-numbers.git",
   "author": "Nicolò Zandarin <nikzanda@hotmail.it>",

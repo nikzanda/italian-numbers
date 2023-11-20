@@ -86,9 +86,14 @@ describe('tens', () => {
 });
 
 describe('exceptions', () => {
-  test('invalid roman number', () => {
+  test('invalid roman number 1', () => {
     expect(() => {
       arabicConverter('not a roman number');
+    }).toThrow('invalid roman number');
+  });
+  test('invalid roman number 2', () => {
+    expect(() => {
+      arabicConverter('XIXIX');
     }).toThrow('invalid roman number');
   });
 });
