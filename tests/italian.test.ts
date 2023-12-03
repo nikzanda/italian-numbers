@@ -122,4 +122,7 @@ describe('random tests', () => {
   test('999999999999 === novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
     expect(italianConverter('novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove')).toBe(999999999999);
   });
+  test('1013000 === un milione tredicimila', () => {
+    expect(italianConverter('un milione tredicimila')).toBe(1013000);
+  });
 });

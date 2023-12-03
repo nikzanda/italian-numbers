@@ -1,37 +1,4 @@
-const unitsDict : { [unit: string] : number } = {
-  un: 1,
-  uno: 1,
-  due: 2,
-  tre: 3,
-  tré: 3,
-  quattro: 4,
-  cinque: 5,
-  sei: 6,
-  sette: 7,
-  otto: 8,
-  nove: 9,
-  dieci: 10,
-  undici: 11,
-  dodici: 12,
-  tredici: 13,
-  quattordici: 14,
-  quindici: 15,
-  sedici: 16,
-  diciassette: 17,
-  diciotto: 18,
-  diciannove: 19,
-};
-
-const tensDict : { [ten: string] : number } = {
-  venti: 20,
-  trenta: 30,
-  quaranta: 40,
-  cinquanta: 50,
-  sessanta: 60,
-  settanta: 70,
-  ottanta: 80,
-  novanta: 90,
-};
+import { unitsDict, tensDict } from '../constants/constants';
 
 const tensConverter = (word: string): number => {
   if (unitsDict[word]) {
@@ -39,7 +6,6 @@ const tensConverter = (word: string): number => {
   }
 
   const ten = Object.keys(tensDict).find((w) => word.startsWith(w.slice(0, -1)));
-
   if (!ten) {
     return NaN;
   }
@@ -85,34 +51,37 @@ const hundredsConverter = (word: string): number => {
 };
 
 const numberCalculator = (word: string): number => {
+  // billions
   let index = word.indexOf('miliard');
   if (index > -1) {
     const sub = word.slice(index + 8);
-    if (!sub) {
-      return hundredsConverter(word.slice(0, index)) * 1000000000;
+    let rest = 0;
+    if (sub) {
+      rest = numberCalculator(sub);
     }
-    return hundredsConverter(word.slice(0, index)) * 1000000000
-      + numberCalculator(sub);
+    return hundredsConverter(word.slice(0, index)) * 1000000000 + rest;
   }
 
+  // millions
   index = word.indexOf('milion');
   if (index > -1) {
     const sub = word.slice(index + 7);
-    if (!sub) {
-      return hundredsConverter(word.slice(0, index)) * 1000000;
+    let rest = 0;
+    if (sub) {
+      rest = numberCalculator(sub);
     }
-    return hundredsConverter(word.slice(0, index)) * 1000000
-      + numberCalculator(sub);
+    return hundredsConverter(word.slice(0, index)) * 1000000 + rest;
   }
 
+  // thousands
   index = word.indexOf('mila');
   if (index > -1) {
     const sub = word.slice(index + 4);
-    if (!sub) {
-      return hundredsConverter(word.slice(0, index)) * 1000;
+    let rest = 0;
+    if (sub) {
+      rest = numberCalculator(sub);
     }
-    return hundredsConverter(word.slice(0, index)) * 1000
-      + numberCalculator(sub);
+    return hundredsConverter(word.slice(0, index)) * 1000 + rest;
   }
 
   index = word.indexOf('mille');

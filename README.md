@@ -1,6 +1,6 @@
 # italian-numbers
 
-### Converts a number to an italian word representation.
+### Converts a number to an italian word representation and vice versa.
 
 Works with positive and negative integers from **-999999999999** (meno novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove) to **999999999999** (novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove).
 
@@ -36,7 +36,7 @@ import {
   ordinalConverter,
   romanConverter,
   arabicConverter,
-} from "italian-numbers";
+} from 'italian-numbers';
 
 // Cardinal numbers representation
 cardinalConverter(1); // 'uno'
@@ -60,10 +60,15 @@ ordinalConverter(1, { plural: true, female: true }); // 'prime'
 ordinalConverter(70, { plural: true, female: true }); // 'settantesime'
 ordinalConverter(110, { plural: true, female: true }); // 'centodecime'
 
+// Number to italian word representation
+italianConverter('uno'); // 1
+italianConverter('novantasette'); // 97
+italianConverter('un milione tredicimila'); // 1013000
+
 // Arabic to Roman
-romanConverter(1); // I
-romanConverter(79); // LXXIX
-romanConverter(2317); // MMCCCXVII
+romanConverter(1); // 'I'
+romanConverter(79); // 'LXXIX'
+romanConverter(2317); // 'MMCCCXVII'
 
 // Roman to Arabic
 arabicConverter('MD'); // 1500
