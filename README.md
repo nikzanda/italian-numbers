@@ -36,6 +36,7 @@ yarn add --save italian-numbers
 import {
   cardinalConverter,
   ordinalConverter,
+  italianConverter,
   romanConverter,
   arabicConverter,
 } from 'italian-numbers';
@@ -70,7 +71,6 @@ italianConverter('zeresimo'); // 0
 italianConverter('prima'); // 1
 italianConverter('quattrocentotredicesime'); // 413
 italianConverter('infinitesimi'); // Infinity
-
 
 // Arabic to Roman
 romanConverter(1); // 'I'

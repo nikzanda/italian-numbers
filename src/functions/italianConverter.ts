@@ -106,7 +106,8 @@ const getNumberFromOrdinal = (ordinal: string): string => {
   cardinal = cardinal.replace(/milionesim\w$/, 'milioni');
   cardinal = cardinal.replace(/^miliardesim\w$/, 'unmiliardo');
   cardinal = cardinal.replace(/miliardesim\w$/, 'miliardi');
-  cardinal = cardinal.replace(/ntesim\w$/, 'nti');
+  cardinal = cardinal.replace(/ventesim\w$/, 'venti');
+  cardinal = cardinal.replace(/ntesim\w$/, 'nta');
   cardinal = cardinal.replace(/unesim\w$/, 'uno');
   cardinal = cardinal.replace(/quattresim\w$/, 'quattro');
   cardinal = cardinal.replace(/ottesim\w$/, 'otto');

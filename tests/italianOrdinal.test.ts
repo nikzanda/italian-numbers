@@ -361,19 +361,6 @@ describe('first thirty plural female numbers', () => {
   });
 });
 
-// describe('exceptions', () => {
-//   test('greater than 999999999999', () => {
-//     expect(() => {
-//       italianConverter(9999999999991);
-//     }).toThrow('greater than 999999999999');
-//   });
-//   test('not a number', () => {
-//     expect(() => {
-//       italianConverter(Number('string'));
-//     }).toThrow('not a number');
-//   });
-// });
-
 describe('min-max', () => {
   test('999999999999 === novecentonovantanovemiliardinovecentonovantanovemilioninovecentonovantanovemilanovecentonovantanovesimo', () => {
     expect(italianConverter('novecentonovantanovemiliardinovecentonovantanovemilioninovecentonovantanovemilanovecentonovantanovesimo')).toBe(999999999999);
@@ -398,6 +385,36 @@ describe('hundreds tests', () => {
   });
   test('116 === centosedicesimo', () => {
     expect(italianConverter('centosedicesimo')).toBe(116);
+  });
+});
+
+describe('tens', () => {
+  test('910 === novecentodecimo', () => {
+    expect(italianConverter('novecentodecimo')).toBe(910);
+  });
+  test('920 === novecentoventesimo', () => {
+    expect(italianConverter('novecentoventesimo')).toBe(920);
+  });
+  test('930 === novecentotrentesimo', () => {
+    expect(italianConverter('novecentotrentesimo')).toBe(930);
+  });
+  test('940 === novecentoquarantesimo', () => {
+    expect(italianConverter('novecentoquarantesimo')).toBe(940);
+  });
+  test('950 === novecentocinquantesimo', () => {
+    expect(italianConverter('novecentocinquantesimo')).toBe(950);
+  });
+  test('960 === novecentosessantesimo', () => {
+    expect(italianConverter('novecentosessantesimo')).toBe(960);
+  });
+  test('970 === novecentosettantesimo', () => {
+    expect(italianConverter('novecentosettantesimo')).toBe(970);
+  });
+  test('980 === novecentoottantesimo', () => {
+    expect(italianConverter('novecentoottantesimo')).toBe(980);
+  });
+  test('990 === novecentonovantesimo', () => {
+    expect(italianConverter('novecentonovantesimo')).toBe(990);
   });
 });
 
