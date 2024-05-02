@@ -146,7 +146,7 @@ const cardinalConverter = (number: number): string => {
   if (number > 999999999999) {
     throw new Error('greater than 999999999999');
   }
-  if (number < 999999999999) {
+  if (number < -999999999999) {
     throw new Error('lower than 999999999999');
   }
 
