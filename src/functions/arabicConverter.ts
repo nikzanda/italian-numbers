@@ -1,6 +1,26 @@
 import { romanNumerals } from '../constants/constants';
 import romanConverter from './romanConverter';
 
+/**
+ * @name arabicConverter
+ * @summary Converts a Roman number to an Arabic number
+ *
+ * @param {string} romanNumber - Roman number
+ * @returns {number} Arabic number representation
+ * @throws Error if parameter is not a valid roman number
+ *
+ * @example
+ * arabicConverter('MD');
+ * //=> 1500
+ *
+ * @example
+ * arabicConverter('CDXC');
+ * //=> 490
+ *
+ * @example
+ * arabicConverter('MCMXC');
+ * //=> 1900
+ */
 export const arabicConverter = (romanNumber: string): number => {
   if (romanNumber === 'infinitum') {
     return Infinity;

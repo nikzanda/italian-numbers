@@ -107,6 +107,34 @@ const wordCalculator = (n: number): string => {
   return 'oh my zsh';
 };
 
+/**
+ * @name cardinalConverter
+ * @summary Converts a number to an italian word representation (cardinal number)
+ *
+ * @param {number} number - Any number
+ * @returns {string} Italian word representation (cardinal number)
+ * @throws Error if number is NaN or greater than 999999999999 or lower than 999999999999
+ *
+ * @example
+ * cardinalConverter(1);
+ * //=> 'uno'
+ *
+ * @example
+ * cardinalConverter(90);
+ * //=> 'novanta'
+ *
+ * @example
+ * cardinalConverter(709);
+ * //=> 'settecentonove'
+ *
+ * @example
+ * cardinalConverter(-1);
+ * //=> 'meno uno'
+ *
+ * @example
+ * cardinalConverter(Infinity);
+ * //=> 'infinito'
+ */
 const cardinalConverter = (number: number): string => {
   if (Number.isNaN(number)) {
     throw new Error('not a number');
@@ -117,6 +145,9 @@ const cardinalConverter = (number: number): string => {
 
   if (number > 999999999999) {
     throw new Error('greater than 999999999999');
+  }
+  if (number < 999999999999) {
+    throw new Error('lower than 999999999999');
   }
 
   let prepend = '';

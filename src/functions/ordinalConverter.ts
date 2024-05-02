@@ -46,6 +46,71 @@ const converter = (n: number): string => {
   return `${word.replace(/.$/, '')}esimo`;
 };
 
+/**
+ * @name ordinalConverter
+ * @summary Converts a number to an italian word representation (ordinal number)
+ *
+ * @param {number} number - Any number
+ * @param {Options} options
+ * If `options.female` is true return representation in feminine style.
+ * If `options.plural` is true return representation in plural style.
+ * Female and plural can be used together
+ * @returns {string} Italian word representation (ordinal number)
+ * @throws Error if number is NaN or greater than 999999999999 or negative
+ *
+ * @example
+ * ordinalConverter(1);
+ * //=> 'primo'
+ *
+ * @example
+ * ordinalConverter(10);
+ * //=> 'decimo'
+ *
+ * @example
+ * ordinalConverter(63);
+ * //=> 'sessantatreesimo'
+ *
+ *
+ * @example
+ * ordinalConverter(Infinity);
+ * //=> 'infinitesimo'
+ *
+ * @example
+ * ordinalConverter(1, { female: true });
+ * //=> 'prima'
+ *
+ * @example
+ * ordinalConverter(15, { female: true });
+ * //=> 'quindicesima'
+ *
+ * @example
+ * ordinalConverter(109, { female: true });
+ * //=> 'centonovesima'
+ *
+ * @example
+ * ordinalConverter(1, { plural: true });
+ * //=> 'primi'
+ *
+ * @example
+ * ordinalConverter(18, { plural: true });
+ * //=> 'diciottesimi'
+ *
+ * @example
+ * ordinalConverter(89, { plural: true });
+ * //=> 'ottantanovesimi'
+ *
+ * @example
+ * ordinalConverter(1, { plural: true, female: true });
+ * //=> 'prime'
+ *
+ * @example
+ * ordinalConverter(70, { plural: true, female: true });
+ * //=> 'settantesime'
+ *
+ * @example
+ * ordinalConverter(110, { plural: true, female: true });
+ * //=> 'centodecime'
+ */
 const ordinalConverter = (
   number: number,
   options: Options = { female: false, plural: false },

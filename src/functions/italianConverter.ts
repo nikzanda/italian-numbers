@@ -131,6 +131,41 @@ const getNumberFromOrdinal = (ordinal: string): string => {
   return cardinal;
 };
 
+/**
+ * @name italianConverter
+ * @summary Converts an italian word representation to a number
+ *
+ * @param {string} word - Number italian word representation
+ * @returns {number} Converted number or NaN
+ *
+ * @example
+ * italianConverter('uno');
+ * //=> 1
+ *
+ * @example
+ * italianConverter('novantasette');
+ * //=> 97
+ *
+ * @example
+ * italianConverter('un milione tredicimila');
+ * //=> 101
+ * 3000
+ * @example
+ * italianConverter('zeresimo');
+ * //=> 0
+ *
+ * @example
+ * italianConverter('prima');
+ * //=> 1
+ *
+ * @example
+ * italianConverter('quattrocentotredicesime');
+ * //=> 413
+ *
+ * @example
+ * italianConverter('infinitesimi');
+ * //=> Infinity
+ */
 const italianConverter = (word: string): number => {
   let escapedWord = word.toLowerCase();
   escapedWord = escapedWord.replaceAll(' e ', '');
