@@ -40,11 +40,8 @@ const hundredsConverter = (word: string): number => {
     result = unitsDict[hundred] * 100;
   }
   if (ten !== '') {
-    if (ten.startsWith('tt')) {
-      result += tensConverter(`o${ten}`);
-    } else {
-      result += tensConverter(ten);
-    }
+    const tensWord = ten.startsWith('tt') ? `o${ten}` : ten;
+    result += tensConverter(tensWord);
   }
 
   return result;
@@ -148,8 +145,8 @@ const getNumberFromOrdinal = (ordinal: string): string => {
  *
  * @example
  * italianConverter('un milione tredicimila');
- * //=> 101
- * 3000
+ * //=> 1013000
+ *
  * @example
  * italianConverter('zeresimo');
  * //=> 0

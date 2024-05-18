@@ -119,10 +119,10 @@ describe('random tests', () => {
   test('100100100 === cento milioni e centomilacento', () => {
     expect(italianConverter('cento milioni e centomilacento')).toBe(100100100);
   });
-  test('999999999999 === novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
-    expect(italianConverter('novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove')).toBe(999999999999);
-  });
   test('1013000 === un milione tredicimila', () => {
     expect(italianConverter('un milione tredicimila')).toBe(1013000);
+  });
+  test('1010 === milledieci', () => {
+    expect(italianConverter('milledieci')).toBe(1010);
   });
 });

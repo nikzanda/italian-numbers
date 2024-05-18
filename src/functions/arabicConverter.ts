@@ -19,7 +19,7 @@ import romanConverter from './romanConverter';
  *
  * @example
  * arabicConverter('MCMXC');
- * //=> 1900
+ * //=> 1990
  */
 export const arabicConverter = (romanNumber: string): number => {
   if (romanNumber === 'infinitum') {
