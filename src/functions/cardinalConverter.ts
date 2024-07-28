@@ -152,9 +152,6 @@ const cardinalConverter = (
   number: number,
   options: Options = { includeDecimals: false },
 ): string => {
-  if (false) {
-    console.log(1);
-  }
   if (Number.isNaN(number)) {
     throw new Error('not a number');
   }
