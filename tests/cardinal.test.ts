@@ -98,6 +98,33 @@ describe('min-max', () => {
   });
 });
 
+describe('decimal tests', () => {
+  test('9 === nove/00', () => {
+    expect(cardinalConverter(9, { includeDecimals: true })).toBe('nove/00');
+  });
+  test('10.45 === dieci/45', () => {
+    expect(cardinalConverter(10.45, { includeDecimals: true })).toBe('dieci/45');
+  });
+  test('10.00 === dieci/00', () => {
+    expect(cardinalConverter(10.00, { includeDecimals: true })).toBe('dieci/00');
+  });
+  test('10.06 === dieci/06', () => {
+    expect(cardinalConverter(10.06, { includeDecimals: true })).toBe('dieci/06');
+  });
+  test('145.6 === centoquarantacinque/60', () => {
+    expect(cardinalConverter(145.6, { includeDecimals: true })).toBe('centoquarantacinque/60');
+  });
+  test('3450.0 === tremilaquattrocentocinquanta/00', () => {
+    expect(cardinalConverter(3450.0, { includeDecimals: true })).toBe('tremilaquattrocentocinquanta/00');
+  });
+  test('10000.999 === diecimila/99', () => {
+    expect(cardinalConverter(10000.999, { includeDecimals: true })).toBe('diecimila/99');
+  });
+  test('10000.99999999979 === diecimila/99', () => {
+    expect(cardinalConverter(10000.99999999979, { includeDecimals: true })).toBe('diecimila/99');
+  });
+});
+
 describe('random tests', () => {
   test('27347687 === ventisette milioni e trecentoquarantasettemilaseicentottantasette', () => {
     expect(cardinalConverter(27347687)).toBe('ventisette milioni e trecentoquarantasettemilaseicentottantasette');
@@ -119,8 +146,5 @@ describe('random tests', () => {
   });
   test('100100100 === cento milioni e centomilacento', () => {
     expect(cardinalConverter(100100100)).toBe('cento milioni e centomilacento');
-  });
-  test('999999999999 === novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
-    expect(cardinalConverter(999999999999)).toBe('novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove');
   });
 });

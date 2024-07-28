@@ -8,6 +8,10 @@ import {
   and,
 } from '../constants/constants';
 
+type Options = {
+  includeDecimals?: boolean;
+}
+
 const tensConverter = (n: number): string => {
   if (n < 20) {
     return zeroNineteen[n];
@@ -112,6 +116,7 @@ const wordCalculator = (n: number): string => {
  * @summary Converts a number to an italian word representation (cardinal number)
  *
  * @param {number} number - Any number
+ * @param {Options} options
  * @returns {string} Italian word representation (cardinal number)
  * @throws Error if number is NaN or greater than 999999999999 or lower than 999999999999
  *
@@ -128,6 +133,14 @@ const wordCalculator = (n: number): string => {
  * //=> 'settecentonove'
  *
  * @example
+ * cardinalConverter(1000.05, { includeDecimals: true });
+ * //=> 'mille/05'
+ *
+ * @example
+ * cardinalConverter(9, { includeDecimals: true });
+ * //=> 'nove/00'
+ *
+ * @example
  * cardinalConverter(-1);
  * //=> 'meno uno'
  *
@@ -135,7 +148,10 @@ const wordCalculator = (n: number): string => {
  * cardinalConverter(Infinity);
  * //=> 'infinito'
  */
-const cardinalConverter = (number: number): string => {
+const cardinalConverter = (
+  number: number,
+  options: Options = { includeDecimals: false },
+): string => {
   if (Number.isNaN(number)) {
     throw new Error('not a number');
   }
@@ -154,7 +170,7 @@ const cardinalConverter = (number: number): string => {
   if (number < 0) {
     prepend = 'meno ';
   }
-  const n = Math.abs(number);
+  const n = Math.trunc(Math.abs(number));
 
   let result = prepend + wordCalculator(n);
   if (result.endsWith('tre') && result !== 'tre') {
@@ -162,6 +178,12 @@ const cardinalConverter = (number: number): string => {
   }
 
   result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
+
+  if (options.includeDecimals) {
+    const decimals = Math.abs(Math.floor((number * 100) % 100));
+    result = `${result}/${decimals.toString().padStart(2, '0')}`;
+  }
+
   return result;
 };
 

@@ -182,6 +182,13 @@ const italianConverter = (word: string): number => {
     return 0;
   }
 
+  let decimals = 0;
+  if (escapedWord.match(/\/\d\d$/)) {
+    let stringDecimals: string;
+    [escapedWord, stringDecimals] = escapedWord.split('/');
+    decimals = parseInt(stringDecimals, 10) / 100;
+  }
+
   if (escapedWord.match(/\w*(a|o|e|i)$/)) {
     const index = zeroTenOrdinals.findIndex((ord) => escapedWord.startsWith(ord.slice(0, -1)));
     if (index !== -1) {
@@ -195,7 +202,8 @@ const italianConverter = (word: string): number => {
     }
   }
 
-  return numberCalculator(escapedWord) * multiplier;
+  const result = numberCalculator(escapedWord) * multiplier + decimals;
+  return result;
 };
 
 export default italianConverter;

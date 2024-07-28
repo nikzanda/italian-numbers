@@ -119,7 +119,8 @@ const ordinalConverter = (
     throw new Error('negative number not allowed');
   }
 
-  const result = converter(number);
+  const n = Math.trunc(number);
+  const result = converter(n);
 
   const { female, plural } = options;
 

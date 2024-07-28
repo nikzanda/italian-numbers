@@ -97,6 +97,30 @@ describe('min-max', () => {
   });
 });
 
+describe('decimal tests', () => {
+  test('9 === nove/00', () => {
+    expect(italianConverter('nove/00')).toBe(9);
+  });
+  test('10.45 === dieci/45', () => {
+    expect(italianConverter('dieci/45')).toBe(10.45);
+  });
+  test('10.00 === dieci/00', () => {
+    expect(italianConverter('dieci/00')).toBe(10.00);
+  });
+  test('10.06 === dieci/06', () => {
+    expect(italianConverter('dieci/06')).toBe(10.06);
+  });
+  test('145.6 === centoquarantacinque/60', () => {
+    expect(italianConverter('centoquarantacinque/60')).toBe(145.6);
+  });
+  test('3450.0 === tremilaquattrocentocinquanta/00', () => {
+    expect(italianConverter('tremilaquattrocentocinquanta/00')).toBe(3450.0);
+  });
+  test('10000.99 === diecimila/99', () => {
+    expect(italianConverter('diecimila/99')).toBe(10000.99);
+  });
+});
+
 describe('random tests', () => {
   test('27347687 === ventisette milioni e trecentoquarantasettemilaseicentottantasette', () => {
     expect(italianConverter('ventisette milioni e trecentoquarantasettemilaseicentottantasette')).toBe(27347687);
