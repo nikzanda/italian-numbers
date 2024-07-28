@@ -160,6 +160,10 @@ const getNumberFromOrdinal = (ordinal: string): string => {
  * //=> 413
  *
  * @example
+ * italianConverter('venti/40');
+ * //=> 20.40
+ *
+ * @example
  * italianConverter('infinitesimi');
  * //=> Infinity
  */
