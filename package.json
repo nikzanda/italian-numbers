@@ -1,6 +1,6 @@
 {
   "name": "italian-numbers",
-  "version": "1.3.4",
+  "version": "0.0.0-development",
   "description": "Converts a number to an italian word representation",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -32,7 +32,8 @@
     "lint": "eslint . --ext .js,.ts",
     "test": "jest",
     "build": "npx tsup",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
