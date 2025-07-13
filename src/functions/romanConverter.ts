@@ -6,24 +6,25 @@ import {
 } from '../constants/constants';
 
 /**
- * @name romanConverter
- * @summary Converts an Arabic number to a Roman number
+ * Converts an Arabic numeral into its Roman numeral representation.
  *
- * @param {number} number - Arabic number
- * @returns {string} Roman string representation
- * @throws Error if number is NaN or greater than 3999 or lower than 1
+ * This function converts a given Arabic number (integer) into its equivalent
+ * Roman numeral format. It supports numbers within the range of 1 to 3999,
+ * inclusive.
  *
- * @example
- * romanConverter(1);
- * //=> 'I'
- *
- * @example
- * romanConverter(79);
- * //=> 'LXXIX'
+ * @param {number} number - The Arabic numeral to convert. Must be an integer between 1 and 3999.
+ * @returns {string} The Roman numeral representation of the input number.
+ * @throws {Error} Throws an error if the input is not a valid number.
+ * @throws {Error} Throws an error if the number is less than 1 or greater than 3999.
  *
  * @example
- * romanConverter(2317);
- * //=> 'MMCCCXVII'
+ * romanConverter(1); // 'I'
+ * romanConverter(79); // 'LXXIX'
+ * romanConverter(2317); // 'MMCCCXVII'
+ * romanConverter(NaN); // Throws Error: "not a number"
+ * romanConverter(0); // Throws Error: "lower than 1"
+ * romanConverter(4000); // Throws Error: "greater than 3999"
+ * romanConverter(Infinity); // 'infinitum'
  */
 const romanConverter = (number: number): string => {
   if (Number.isNaN(number)) {
