@@ -65,7 +65,7 @@ ordinalConverter(1, { plural: true, female: true }); // 'prime'
 ordinalConverter(70, { plural: true, female: true }); // 'settantesime'
 ordinalConverter(110, { plural: true, female: true }); // 'centodecime'
 
-// 🔁 Italian word representation to number
+// 🔡 Italian word representation to number
 italianConverter('uno'); // 1
 italianConverter('novantasette'); // 97
 italianConverter('un milione tredicimila'); // 1013000
@@ -79,7 +79,7 @@ romanConverter(1); // 'I'
 romanConverter(79); // 'LXXIX'
 romanConverter(2317); // 'MMCCCXVII'
 
-// 🕌 Roman to Arabic
+// 🏺 Roman to Arabic
 arabicConverter('MD'); // 1500
 arabicConverter('CDXC'); // 490
 arabicConverter('MCMXC'); // 1990

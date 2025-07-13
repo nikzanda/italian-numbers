@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>italian-numbers</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
@@ -14,49 +16,68 @@
       color: #f1f5f9;
       line-height: 1.6;
     }
+
     header {
       background: linear-gradient(135deg, #1e3a8a, #2563eb);
       padding: 2rem;
       text-align: center;
       color: white;
     }
+
     header h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
+
     header p {
       font-size: 1.2rem;
     }
+
     main {
       padding: 2rem;
-      max-width: 860px;
+      max-width: 1200px;
       margin: auto;
     }
-    section {
-      margin-bottom: 3rem;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: #1e293b;
       padding: 2rem;
       border-radius: 16px;
-      background-color: #1e293b;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
-    h2 {
-      font-size: 1.8rem;
+
+    .card h2 {
+      font-size: 1.6rem;
       color: #93c5fd;
       margin-bottom: 1rem;
     }
-    input, select, button {
+
+    input,
+    select,
+    button {
       padding: 0.75rem;
       font-size: 1rem;
       width: 100%;
+      box-sizing: border-box;
       margin-top: 0.5rem;
       margin-bottom: 1rem;
       border: none;
       border-radius: 8px;
     }
-    input, select {
+
+    input,
+    select {
       background-color: #334155;
       color: #f1f5f9;
     }
+
     button {
       background-color: #2563eb;
       color: white;
@@ -64,21 +85,65 @@
       font-weight: 600;
       transition: background 0.3s;
     }
+
     button:hover {
       background-color: #3b82f6;
     }
-    #output {
-      padding: 1rem;
+
+    .output-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background-color: #0e7490;
       border-radius: 8px;
-      font-size: 1.2rem;
-      margin-top: 1rem;
+      font-size: 1.1rem;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      min-height: 48px;
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
     }
+
+    .output-box.filled {
+      opacity: 1;
+    }
+
+    .output-box span {
+      flex: 1;
+      padding-right: 0.5rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0;
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    .copy-btn i {
+      pointer-events: none;
+    }
+
     .ordinal-options {
       display: flex;
       gap: 1rem;
       margin-top: 0.5rem;
+      flex-wrap: wrap;
     }
+
     .ordinal-options label {
       display: flex;
       align-items: center;
@@ -89,6 +154,7 @@
       font-size: 0.9rem;
       cursor: pointer;
     }
+
     pre {
       background-color: #334155;
       padding: 1rem;
@@ -96,57 +162,100 @@
       overflow-x: auto;
       color: #e2e8f0;
     }
+
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
       background-color: #1e293b;
       color: #94a3b8;
+      margin-top: 2rem;
     }
+
     a {
       color: #38bdf8;
       text-decoration: none;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>📦 italian-numbers</h1>
-    <p>Converti numeri e parole in italiano con stile — cardinali, ordinali, romani e altro ancora!</p>
+    <h1>🔢 italian-numbers 🔡</h1>
+    <p>Converti numeri e parole in italiano con stile — cardinali, ordinali, romani e altro!</p>
   </header>
 
   <main>
-    <section>
-      <h2>🔤 Conversione rapida</h2>
-      <label for="input">Numero o parola:</label>
-      <input id="input" type="text" placeholder="Es. 42 o 'ventitré'" />
-      
-      <label for="method">Metodo:</label>
-      <select id="method">
-        <option value="cardinal">Cardinale</option>
-        <option value="ordinal">Ordinale</option>
-        <option value="italian">Italiano → Numero</option>
-        <option value="roman">Numero → Romano</option>
-        <option value="arabic">Romano → Arabo</option>
-      </select>
-
-      <div class="ordinal-options" id="ordinal-options" style="display:none;">
-        <label><input type="checkbox" id="female" /> Femminile</label>
-        <label><input type="checkbox" id="plural" /> Plurale</label>
+    <div class="grid">
+      <div class="card">
+        <h2>🔢 Cardinale</h2>
+        <input id="cardinal-input" type="number" placeholder="Es. 17" />
+        <button onclick="convertCardinal()">Converti</button>
+        <div id="cardinal-output" class="output-box">
+          <span id="cardinal-result"></span>
+          <button class="copy-btn" id="cardinal-copy" onclick="copyToClipboard('cardinal')" title="Copia">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
       </div>
 
-      <button onclick="convert()"><i class="fas fa-magic"></i> Converti</button>
+      <div class="card">
+        <h2>🥇 Ordinale</h2>
+        <input id="ordinal-input" type="number" placeholder="Es. 3" />
+        <div class="ordinal-options">
+          <label><input type="checkbox" id="ord-female" /> Femminile</label>
+          <label><input type="checkbox" id="ord-plural" /> Plurale</label>
+        </div>
+        <button onclick="convertOrdinal()">Converti</button>
+        <div id="ordinal-output" class="output-box">
+          <span id="ordinal-result"></span>
+          <button class="copy-btn" id="ordinal-copy" onclick="copyToClipboard('ordinal')" title="Copia">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
 
-      <div id="output" style="display:none;"></div>
-      <button id="copy-button" onclick="copyResult()" style="display:none;">📋 Copia</button>
-    </section>
+      <div class="card">
+        <h2>🔡 Parola → Numero</h2>
+        <input id="italian-input" type="text" placeholder="Es. 'cinquantadue'" />
+        <button onclick="convertItalian()">Converti</button>
+        <div id="italian-output" class="output-box">
+          <span id="italian-result"></span>
+          <button class="copy-btn" id="italian-copy" onclick="copyToClipboard('italian')" title="Copia">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
 
-    <section>
-      <h2>📦 Installazione</h2>
-      <pre><code>npm install italian-numbers</code></pre>
-    </section>
+      <div class="card">
+        <h2>🏛 Numero → Romano</h2>
+        <input id="roman-input" type="number" placeholder="Es. 49" />
+        <button onclick="convertRoman()">Converti</button>
+        <div id="roman-output" class="output-box">
+          <span id="roman-result"></span>
+          <button class="copy-btn" id="roman-copy" onclick="copyToClipboard('roman')" title="Copia">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
 
-    <section>
+      <div class="card">
+        <h2>🏺 Romano → Arabo</h2>
+        <input id="arabic-input" type="text" placeholder="Es. XLVII" />
+        <button onclick="convertArabic()">Converti</button>
+        <div id="arabic-output" class="output-box">
+          <span id="arabic-result"></span>
+          <button class="copy-btn" id="arabic-copy" onclick="copyToClipboard('arabic')" title="Copia">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 3rem;">
+      <h2>📚 Installazione</h2>
+      <pre><code>yarn add italian-numbers</code></pre>
+
       <h2>🔗 Link utili</h2>
       <ul>
         <li><a href="https://www.npmjs.com/package/italian-numbers" target="_blank">npm</a></li>
@@ -156,68 +265,91 @@
   </main>
 
   <footer>
-    Creato con ❤️ da <strong>Nicolò</strong> & <strong>Beatrice</strong> — powered by italian-numbers
+    Creato con ❤️ da <strong>Nicolò</strong> & <strong>Beatrice
   </footer>
 
-  <script src="./index.global.js" defer></script>
+  <script defer src="https://unpkg.com/italian-numbers@latest/dist/index.global.js"></script>
   <script>
-    function updateOptionsVisibility() {
-      document.getElementById('ordinal-options').style.display =
-        document.getElementById('method').value === 'ordinal' ? 'flex' : 'none';
-    }
-
-    document.getElementById('method').addEventListener('change', updateOptionsVisibility);
-    window.addEventListener('load', updateOptionsVisibility);
-
-    function convert() {
-      const input = document.getElementById('input').value;
-      const method = document.getElementById('method').value;
-      const output = document.getElementById('output');
-
-      const {
-        cardinalConverter,
-        ordinalConverter,
-        italianConverter,
-        romanConverter,
-        arabicConverter
-      } = window.italianNumbers;
-
-      try {
-        let result;
-
-        if (method === 'ordinal') {
-          const female = document.getElementById('female').checked;
-          const plural = document.getElementById('plural').checked;
-          result = ordinalConverter(parseInt(input), { female, plural });
-        } else if (method === 'cardinal') {
-          result = cardinalConverter(parseInt(input));
-        } else if (method === 'italian') {
-          result = italianConverter(input);
-        } else if (method === 'roman') {
-          result = romanConverter(parseInt(input));
-        } else if (method === 'arabic') {
-          result = arabicConverter(input);
-        }
-
-        output.innerHTML = `✅ Risultato: <span id='output-number'>${result}</span>`;
-        output.style.display = 'block';
-        document.getElementById('copy-button').style.display = 'inline-block';
-      } catch (e) {
-        output.innerText = `⚠️ Errore: ${e.message}`;
-        output.style.display = 'block';
-      }
-    }
-
-    function copyResult() {
-      const outputText = document.getElementById('output-number').innerText;
-      navigator.clipboard.writeText(outputText)
+    function copyToClipboard(type) {
+      const text = document.getElementById(`${type}-result`).innerText.trim();
+      const btn = document.getElementById(`${type}-copy`);
+      if (!text) return;
+      navigator.clipboard.writeText(text)
         .then(() => {
-          const btn = document.getElementById('copy-button');
-          btn.innerText = '✅ Copiato!';
-          setTimeout(() => btn.innerText = '📋 Copia', 2000);
+          btn.innerHTML = '✅';
+          setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-copy"></i>';
+          }, 2000);
         })
         .catch(err => alert('Errore nella copia: ' + err));
     }
+
+    function updateOutput(type, result) {
+      const outputBox = document.getElementById(`${type}-output`);
+      const resultSpan = document.getElementById(`${type}-result`);
+      resultSpan.innerText = result;
+      outputBox.classList.add('filled');
+    }
+
+    function handleError(type, error) {
+      const outputBox = document.getElementById(`${type}-output`);
+      const resultSpan = document.getElementById(`${type}-result`);
+      resultSpan.innerText = '⚠️ ' + error.message;
+      outputBox.classList.remove('filled');
+    }
+
+    function convertCardinal() {
+      const value = parseInt(document.getElementById('cardinal-input').value);
+      try {
+        const result = window.italianNumbers.cardinalConverter(value);
+        updateOutput('cardinal', result);
+      } catch (e) {
+        handleError('cardinal', e);
+      }
+    }
+
+    function convertOrdinal() {
+      const value = parseInt(document.getElementById('ordinal-input').value);
+      const female = document.getElementById('ord-female').checked;
+      const plural = document.getElementById('ord-plural').checked;
+      try {
+        const result = window.italianNumbers.ordinalConverter(value, { female, plural });
+        updateOutput('ordinal', result);
+      } catch (e) {
+        handleError('ordinal', e);
+      }
+    }
+
+    function convertItalian() {
+      const value = document.getElementById('italian-input').value;
+      try {
+        const result = window.italianNumbers.italianConverter(value);
+        updateOutput('italian', result);
+      } catch (e) {
+        handleError('italian', e);
+      }
+    }
+
+    function convertRoman() {
+      const value = parseInt(document.getElementById('roman-input').value);
+      try {
+        const result = window.italianNumbers.romanConverter(value);
+        updateOutput('roman', result);
+      } catch (e) {
+        handleError('roman', e);
+      }
+    }
+
+    function convertArabic() {
+      const value = document.getElementById('arabic-input').value;
+      try {
+        const result = window.italianNumbers.arabicConverter(value);
+        updateOutput('arabic', result);
+      } catch (e) {
+        handleError('arabic', e);
+      }
+    }
   </script>
 </body>
+
 </html>
