@@ -1,10 +1,12 @@
 {
   "name": "italian-numbers",
   "version": "1.4.0",
+  "homepage": "https://nikzanda.github.io/italian-numbers/",
   "description": "Converts a number to an italian word representation",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "browser": "dist/index.global.js",
   "keywords": [
     "italian-numbers",
     "italian",
