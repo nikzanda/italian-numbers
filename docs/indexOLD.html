@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>italian-numbers</title>
+  <script src="https://unpkg.com/italian-numbers@latest/dist/index.umd.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      color: #007acc;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #eee;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    input, select {
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      width: 100%;
+      max-width: 300px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📦 italian-numbers</h1>
+  <p>Converti numeri in parole italiane e viceversa. Supporta cardinali, ordinali, femminili, plurali e numeri romani!</p>
+
+  <h2>🔤 Provalo qui</h2>
+  <label for="input">Inserisci un numero o una parola:</label><br />
+  <input type="text" id="input" placeholder="Es. 709 o 'novantasette'" />
+
+  <label for="method">Metodo di conversione:</label><br />
+  <select id="method">
+    <option value="cardinal">Cardinale</option>
+    <option value="ordinal">Ordinale</option>
+    <option value="italian">Italian to Number</option>
+    <option value="roman">Numeri Romani</option>
+    <option value="arabic">Romano a Arabo</option>
+  </select><br />
+
+  <button onclick="convert()">Converti</button>
+  <div id="output"></div>
+
+  <!-- <script defer src="https://unpkg.com/italian-numbers@latest/dist/index.global.js"></script> -->
+  <script defer src="./index.global.js"></script>
+
+  <script>
+    function convert() {
+      const input = document.getElementById('input').value;
+      const method = document.getElementById('method').value;
+      const output = document.getElementById('output');
+
+      try {
+        let result;
+        switch (method) {
+          case 'cardinal':
+            result = window.italianNumbers.cardinalConverter(parseInt(input));
+            break;
+          case 'ordinal':
+            result = window.italianNumbers.ordinalConverter(parseInt(input));
+            break;
+          case 'italian':
+            result = window.italianNumbers.italianConverter(input);
+            break;
+          case 'roman':
+            result = window.italianNumbers.romanConverter(parseInt(input));
+            break;
+          case 'arabic':
+            result = window.italianNumbers.arabicConverter(input);
+            break;
+        }
+        output.innerText = `Risultato: ${result}`;
+      } catch (e) {
+        output.innerText = `Errore: ${e.message}`;
+      }
+    }
+  </script>
+
+  <h2>📚 Installazione</h2>
+  <pre><code>npm install italian-numbers</code></pre>
+
+  <h2>🔗 Link utili</h2>
+  <ul>
+    <li><a href="https://www.npmjs.com/package/italian-numbers" target="_blank">Pagina npm</a></li>
+    <li><a href="https://github.com/nikzanda/italian-numbers" target="_blank">Repository GitHub</a></li>
+  </ul>
+
+  <p>Creato con ❤️ da <strong>Nicolò</strong></p>
+</body>
+</html>

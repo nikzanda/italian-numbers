@@ -47,69 +47,66 @@ const converter = (n: number): string => {
 };
 
 /**
- * @name ordinalConverter
- * @summary Converts a number to an italian word representation (ordinal number)
+ * Converts a number into its Italian word representation in ordinal form.
  *
- * @param {number} number - Any number
+ * @param {number} number
+ * A positive integer or Infinity. Must be a valid number (not NaN), less than
+ * or equal to 999,999,999,999.
+ * Infinity is represented as "infinitesimo".
  * @param {Options} options
- * If `options.female` is true return representation in feminine style.
- * If `options.plural` is true return representation in plural style.
- * Female and plural can be used together
- * @returns {string} Italian word representation (ordinal number)
- * @throws Error if number is NaN or greater than 999999999999 or negative
+ * Configuration options for the conversion.
+ * - `options.female` (optional): If `true`, returns the representation in feminine form.
+ * - `options.plural` (optional): If `true`, returns the representation in plural form.
+ *
+ * Both `female` and `plural` can be used together.
+ *
+ * @returns {string}
+ * The Italian word representing the ordinal number.
+ * Example:
+ *  - 1 -> "primo",
+ *  - 10 -> "decimo",
+ *  - Infinity -> "infinitesimo".
+ *
+ * @throws {Error} Throws an error if:
+ *  - The number is NaN.
+ *  - The number is greater than 999,999,999,999.
+ *  - The number is negative.
  *
  * @example
- * ordinalConverter(1);
- * //=> 'primo'
+ * // Basic usage:
+ * ordinalConverter(1); // 'primo'
+ * ordinalConverter(10); // 'decimo'
+ * ordinalConverter(63); // 'sessantatreesimo'
  *
- * @example
- * ordinalConverter(10);
- * //=> 'decimo'
+ * // Special case:
+ * ordinalConverter(Infinity); // 'infinitesimo'
  *
- * @example
- * ordinalConverter(63);
- * //=> 'sessantatreesimo'
+ * // Feminine form:
+ * ordinalConverter(1, { female: true }); // 'prima'
+ * ordinalConverter(15, { female: true }); // 'quindicesima'
+ * ordinalConverter(109, { female: true }); // 'centonovesima'
  *
+ * // Plural form:
+ * ordinalConverter(1, { plural: true }); // 'primi'
+ * ordinalConverter(18, { plural: true }); // 'diciottesimi'
+ * ordinalConverter(89, { plural: true }); // 'ottantanovesimi'
  *
- * @example
- * ordinalConverter(Infinity);
- * //=> 'infinitesimo'
+ * // Feminine plural form:
+ * ordinalConverter(1, { plural: true, female: true }); // 'prime'
+ * ordinalConverter(70, { plural: true, female: true }); // 'settantesime'
+ * ordinalConverter(110, { plural: true, female: true }); // 'centodecime'
  *
- * @example
- * ordinalConverter(1, { female: true });
- * //=> 'prima'
+ * @description
+ * This function converts numbers into their ordinal form in Italian, handling:
+ * - Standard ordinal forms.
+ * - Feminine and/or plural variations.
+ * - Special case for Infinity.
+ * - Error handling for invalid inputs.
  *
- * @example
- * ordinalConverter(15, { female: true });
- * //=> 'quindicesima'
- *
- * @example
- * ordinalConverter(109, { female: true });
- * //=> 'centonovesima'
- *
- * @example
- * ordinalConverter(1, { plural: true });
- * //=> 'primi'
- *
- * @example
- * ordinalConverter(18, { plural: true });
- * //=> 'diciottesimi'
- *
- * @example
- * ordinalConverter(89, { plural: true });
- * //=> 'ottantanovesimi'
- *
- * @example
- * ordinalConverter(1, { plural: true, female: true });
- * //=> 'prime'
- *
- * @example
- * ordinalConverter(70, { plural: true, female: true });
- * //=> 'settantesime'
- *
- * @example
- * ordinalConverter(110, { plural: true, female: true });
- * //=> 'centodecime'
+ * Note:
+ * - The `female` and `plural` options modify only the suffix of the word
+ * (e.g., "a" for feminine or "i/e" for plural forms).
+ * - For large numbers or unexpected inputs, ensure proper validation before usage.
  */
 const ordinalConverter = (
   number: number,

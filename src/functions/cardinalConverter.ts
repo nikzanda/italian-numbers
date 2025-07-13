@@ -112,41 +112,33 @@ const wordCalculator = (n: number): string => {
 };
 
 /**
- * @name cardinalConverter
- * @summary Converts a number to an italian word representation (cardinal number)
+ * Converts a numeric value into its Italian cardinal word representation.
  *
- * @param {number} number - Any number
- * @param {Options} options
- * @returns {string} Italian word representation (cardinal number)
- * @throws Error if number is NaN or greater than 999999999999 or lower than 999999999999
+ * This function accepts a number and returns its Italian word representation
+ * as a cardinal number. Optionally, it can include the decimal part in the result.
+ * The valid range for the input number is -999999999999 to 999999999999.
  *
- * @example
- * cardinalConverter(1);
- * //=> 'uno'
+ * @param {number} number - The numeric value to convert. Must be a valid finite number.
+ * @param {Options} options - Configuration options. Default is `{ includeDecimals: false }`.
+ * @param {boolean} [options.includeDecimals=false]
+ * - Whether to include the decimal part in the result.
  *
- * @example
- * cardinalConverter(90);
- * //=> 'novanta'
+ * @returns {string} The Italian cardinal word representation of the input number.
  *
- * @example
- * cardinalConverter(709);
- * //=> 'settecentonove'
+ * @throws {Error}
+ * Throws an error if the input is not a valid number.
+ * @throws {Error}
+ * Throws an error if the input is greater than 999999999999 or lower than -999999999999.
  *
  * @example
- * cardinalConverter(1000.05, { includeDecimals: true });
- * //=> 'mille/05'
- *
- * @example
- * cardinalConverter(9, { includeDecimals: true });
- * //=> 'nove/00'
- *
- * @example
- * cardinalConverter(-1);
- * //=> 'meno uno'
- *
- * @example
- * cardinalConverter(Infinity);
- * //=> 'infinito'
+ * cardinalConverter(1); // 'uno'
+ * cardinalConverter(90); // 'novanta'
+ * cardinalConverter(709); // 'settecentonove'
+ * cardinalConverter(1000.05, { includeDecimals: true }); // 'mille/05'
+ * cardinalConverter(9, { includeDecimals: true }); // 'nove/00'
+ * cardinalConverter(-1); // 'meno uno'
+ * cardinalConverter(Infinity); // 'infinito'
+ * cardinalConverter(NaN); // Throws Error: "not a number"
  */
 const cardinalConverter = (
   number: number,

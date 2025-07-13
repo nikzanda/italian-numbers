@@ -2,24 +2,24 @@ import { romanNumerals } from '../constants/constants';
 import romanConverter from './romanConverter';
 
 /**
- * @name arabicConverter
- * @summary Converts a Roman number to an Arabic number
+ * Converts a Roman numeral into its Arabic numeral representation.
  *
- * @param {string} romanNumber - Roman number
- * @returns {number} Arabic number representation
- * @throws Error if parameter is not a valid roman number
+ * This function takes a valid Roman numeral string and converts it into its
+ * equivalent Arabic number (integer). It supports standard Roman numeral notation.
+ * Invalid inputs, including unsupported characters or improper formatting, will
+ * trigger an error.
  *
- * @example
- * arabicConverter('MD');
- * //=> 1500
- *
- * @example
- * arabicConverter('CDXC');
- * //=> 490
+ * @param {string} romanNumber - The Roman numeral to convert. Must be a valid Roman numeral.
+ * @returns {number} The Arabic numeral representation of the input Roman numeral.
+ * @throws {Error} - Throws an error if the input string is not a valid Roman numeral.
  *
  * @example
- * arabicConverter('MCMXC');
- * //=> 1990
+ * arabicConverter('MD'); // 1500
+ * arabicConverter('CDXC'); // 490
+ * arabicConverter('MCMXC'); // 1990
+ * arabicConverter('infinitum'); // Infinity
+ * arabicConverter('ABC'); // Throws Error: "invalid roman number"
+ * arabicConverter(''); // Throws Error: "invalid roman number"
  */
 export const arabicConverter = (romanNumber: string): number => {
   if (romanNumber === 'infinitum') {

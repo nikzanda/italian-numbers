@@ -129,43 +129,37 @@ const getNumberFromOrdinal = (ordinal: string): string => {
 };
 
 /**
- * @name italianConverter
- * @summary Converts an italian word representation to a number
+ * Converts an Italian word representation of a number into its numeric value.
  *
- * @param {string} word - Number italian word representation
- * @returns {number} Converted number or NaN
+ * @param {string} word
+ * The Italian word representing a number, which may include ordinals, decimals, or negative values.
+ * Special values like "infinito" (Infinity) are also supported.
  *
- * @example
- * italianConverter('uno');
- * //=> 1
- *
- * @example
- * italianConverter('novantasette');
- * //=> 97
+ * @returns {number}
+ * The numeric value corresponding to the word, or NaN if the input cannot be converted.
+ * Returns Infinity for words like "infinito".
  *
  * @example
- * italianConverter('un milione tredicimila');
- * //=> 1013000
+ * italianConverter('uno'); // 1
+ * italianConverter('novantasette'); // 97
+ * italianConverter('un milione tredicimila'); // 1013000
+ * italianConverter('zeresimo'); // 0
+ * italianConverter('prima'); // 1
+ * italianConverter('quattrocentotredicesime'); // 413
+ * italianConverter('venti/40'); // 20.40
+ * italianConverter('infinitesimi'); // Infinity
  *
- * @example
- * italianConverter('zeresimo');
- * //=> 0
+ * @description
+ * This function processes an Italian word representing a number, handling cases like:
+ * - Removing spaces and conjunctions (e.g., "un milione e cento").
+ * - Supporting negative numbers (e.g., "meno due").
+ * - Parsing decimal numbers in formats like "venti/40".
+ * - Handling ordinal forms like "prima" or "quindicesimo".
+ * - Recognizing "infinito" and related words as Infinity.
  *
- * @example
- * italianConverter('prima');
- * //=> 1
- *
- * @example
- * italianConverter('quattrocentotredicesime');
- * //=> 413
- *
- * @example
- * italianConverter('venti/40');
- * //=> 20.40
- *
- * @example
- * italianConverter('infinitesimi');
- * //=> Infinity
+ * Note:
+ * - Case sensitivity is handled (input is converted to lowercase internally).
+ * - The function expects well-formed input; unexpected input may yield NaN.
  */
 const italianConverter = (word: string): number => {
   let escapedWord = word.toLowerCase();

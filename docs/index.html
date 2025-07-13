@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>italian-numbers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #0f172a;
+      color: #f1f5f9;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      padding: 2rem;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    main {
+      padding: 2rem;
+      max-width: 860px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border-radius: 16px;
+      background-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: #93c5fd;
+      margin-bottom: 1rem;
+    }
+    input, select, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+    }
+    input, select {
+      background-color: #334155;
+      color: #f1f5f9;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #3b82f6;
+    }
+    #output {
+      padding: 1rem;
+      background-color: #0e7490;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    .ordinal-options {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .ordinal-options label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #475569;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    pre {
+      background-color: #334155;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      color: #e2e8f0;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background-color: #1e293b;
+      color: #94a3b8;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📦 italian-numbers</h1>
+    <p>Converti numeri e parole in italiano con stile — cardinali, ordinali, romani e altro ancora!</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>🔤 Conversione rapida</h2>
+      <label for="input">Numero o parola:</label>
+      <input id="input" type="text" placeholder="Es. 42 o 'ventitré'" />
+      
+      <label for="method">Metodo:</label>
+      <select id="method">
+        <option value="cardinal">Cardinale</option>
+        <option value="ordinal">Ordinale</option>
+        <option value="italian">Italiano → Numero</option>
+        <option value="roman">Numero → Romano</option>
+        <option value="arabic">Romano → Arabo</option>
+      </select>
+
+      <div class="ordinal-options" id="ordinal-options" style="display:none;">
+        <label><input type="checkbox" id="female" /> Femminile</label>
+        <label><input type="checkbox" id="plural" /> Plurale</label>
+      </div>
+
+      <button onclick="convert()"><i class="fas fa-magic"></i> Converti</button>
+
+      <div id="output" style="display:none;"></div>
+      <button id="copy-button" onclick="copyResult()" style="display:none;">📋 Copia</button>
+    </section>
+
+    <section>
+      <h2>📦 Installazione</h2>
+      <pre><code>npm install italian-numbers</code></pre>
+    </section>
+
+    <section>
+      <h2>🔗 Link utili</h2>
+      <ul>
+        <li><a href="https://www.npmjs.com/package/italian-numbers" target="_blank">npm</a></li>
+        <li><a href="https://github.com/nikzanda/italian-numbers" target="_blank">GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Creato con ❤️ da <strong>Nicolò</strong> & <strong>Beatrice</strong> — powered by italian-numbers
+  </footer>
+
+  <script src="./index.global.js" defer></script>
+  <script>
+    function updateOptionsVisibility() {
+      document.getElementById('ordinal-options').style.display =
+        document.getElementById('method').value === 'ordinal' ? 'flex' : 'none';
+    }
+
+    document.getElementById('method').addEventListener('change', updateOptionsVisibility);
+    window.addEventListener('load', updateOptionsVisibility);
+
+    function convert() {
+      const input = document.getElementById('input').value;
+      const method = document.getElementById('method').value;
+      const output = document.getElementById('output');
+
+      const {
+        cardinalConverter,
+        ordinalConverter,
+        italianConverter,
+        romanConverter,
+        arabicConverter
+      } = window.italianNumbers;
+
+      try {
+        let result;
+
+        if (method === 'ordinal') {
+          const female = document.getElementById('female').checked;
+          const plural = document.getElementById('plural').checked;
+          result = ordinalConverter(parseInt(input), { female, plural });
+        } else if (method === 'cardinal') {
+          result = cardinalConverter(parseInt(input));
+        } else if (method === 'italian') {
+          result = italianConverter(input);
+        } else if (method === 'roman') {
+          result = romanConverter(parseInt(input));
+        } else if (method === 'arabic') {
+          result = arabicConverter(input);
+        }
+
+        output.innerHTML = `✅ Risultato: <span id='output-number'>${result}</span>`;
+        output.style.display = 'block';
+        document.getElementById('copy-button').style.display = 'inline-block';
+      } catch (e) {
+        output.innerText = `⚠️ Errore: ${e.message}`;
+        output.style.display = 'block';
+      }
+    }
+
+    function copyResult() {
+      const outputText = document.getElementById('output-number').innerText;
+      navigator.clipboard.writeText(outputText)
+        .then(() => {
+          const btn = document.getElementById('copy-button');
+          btn.innerText = '✅ Copiato!';
+          setTimeout(() => btn.innerText = '📋 Copia', 2000);
+        })
+        .catch(err => alert('Errore nella copia: ' + err));
+    }
+  </script>
+</body>
+</html>
