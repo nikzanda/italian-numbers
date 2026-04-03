@@ -447,3 +447,31 @@ describe('random tests', () => {
     expect(ordinalConverter(103)).toBe('centotreesimo');
   });
 });
+
+describe('special values', () => {
+  test('Infinity === infinitesimo', () => {
+    expect(ordinalConverter(Infinity)).toBe('infinitesimo');
+  });
+  test('Infinity female === infinitesima', () => {
+    expect(ordinalConverter(Infinity, { female: true })).toBe('infinitesima');
+  });
+  test('Infinity plural === infinitesimi', () => {
+    expect(ordinalConverter(Infinity, { plural: true })).toBe('infinitesimi');
+  });
+  test('Infinity female plural === infinitesime', () => {
+    expect(ordinalConverter(Infinity, { female: true, plural: true })).toBe('infinitesime');
+  });
+});
+
+describe('exceptions', () => {
+  test('negative number', () => {
+    expect(() => {
+      ordinalConverter(-1);
+    }).toThrow('negative number not allowed');
+  });
+  test('NaN', () => {
+    expect(() => {
+      ordinalConverter(NaN);
+    }).toThrow('not a number');
+  });
+});

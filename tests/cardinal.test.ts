@@ -16,6 +16,11 @@ describe('exceptions', () => {
       cardinalConverter(9999999999991);
     }).toThrow('greater than 999999999999');
   });
+  test('lower than -999999999999', () => {
+    expect(() => {
+      cardinalConverter(-9999999999991);
+    }).toThrow('lower than -999999999999');
+  });
   test('not a number', () => {
     expect(() => {
       cardinalConverter(Number('string'));
@@ -95,6 +100,10 @@ describe('min-max', () => {
 
   test('Infinity === infinito', () => {
     expect(cardinalConverter(Infinity)).toBe('infinito');
+  });
+
+  test('-Infinity === meno infinito', () => {
+    expect(cardinalConverter(-Infinity)).toBe('meno infinito');
   });
 });
 

@@ -101,4 +101,14 @@ describe('exceptions', () => {
       romanConverter(0);
     }).toThrow('lower than 1');
   });
+  test('negative number', () => {
+    expect(() => {
+      romanConverter(-5);
+    }).toThrow('lower than 1');
+  });
+  test('not an integer', () => {
+    expect(() => {
+      romanConverter(3.5);
+    }).toThrow('not an integer');
+  });
 });

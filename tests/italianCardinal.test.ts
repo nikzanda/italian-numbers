@@ -150,3 +150,42 @@ describe('random tests', () => {
     expect(italianConverter('milledieci')).toBe(1010);
   });
 });
+
+describe('infinity', () => {
+  test('infinito === Infinity', () => {
+    expect(italianConverter('infinito')).toBe(Infinity);
+  });
+  test('meno infinito === -Infinity', () => {
+    expect(italianConverter('meno infinito')).toBe(-Infinity);
+  });
+  test('infinitesimo === Infinity', () => {
+    expect(italianConverter('infinitesimo')).toBe(Infinity);
+  });
+  test('infinitesima === Infinity', () => {
+    expect(italianConverter('infinitesima')).toBe(Infinity);
+  });
+  test('infinitesimi === Infinity', () => {
+    expect(italianConverter('infinitesimi')).toBe(Infinity);
+  });
+});
+
+describe('case insensitivity', () => {
+  test('VENTUNO === 21', () => {
+    expect(italianConverter('VENTUNO')).toBe(21);
+  });
+  test('Tre === 3', () => {
+    expect(italianConverter('Tre')).toBe(3);
+  });
+  test('MILLE === 1000', () => {
+    expect(italianConverter('MILLE')).toBe(1000);
+  });
+});
+
+describe('invalid input', () => {
+  test('empty string === NaN', () => {
+    expect(italianConverter('')).toBe(NaN);
+  });
+  test('random string === NaN', () => {
+    expect(italianConverter('ciao')).toBe(NaN);
+  });
+});

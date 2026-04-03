@@ -96,4 +96,14 @@ describe('exceptions', () => {
       arabicConverter('XIXIX');
     }).toThrow('invalid roman number');
   });
+  test('empty string', () => {
+    expect(() => {
+      arabicConverter('');
+    }).toThrow('invalid roman number');
+  });
+  test('lowercase roman numeral', () => {
+    expect(() => {
+      arabicConverter('xiv');
+    }).toThrow('invalid roman number');
+  });
 });
