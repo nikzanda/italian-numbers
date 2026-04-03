@@ -92,23 +92,19 @@ const wordCalculator = (n: number): string => {
     );
   }
   // billions
-  if (digitsNumber < 13) {
-    const firstDigits = Math.floor(n / 1000000000);
-    if (firstDigits === 1) {
-      if (n % 1000000000 === 0) {
-        return billions[0];
-      }
-      return billions[0] + and + wordCalculator(n % 1000000000);
-    }
+  const firstDigits = Math.floor(n / 1000000000);
+  if (firstDigits === 1) {
     if (n % 1000000000 === 0) {
-      return wordCalculator(firstDigits) + billions[1];
+      return billions[0];
     }
-    return (
-      wordCalculator(firstDigits) + billions[1] + and + wordCalculator(n % 1000000000)
-    );
+    return billions[0] + and + wordCalculator(n % 1000000000);
   }
-
-  throw new Error('number out of range');
+  if (n % 1000000000 === 0) {
+    return wordCalculator(firstDigits) + billions[1];
+  }
+  return (
+    wordCalculator(firstDigits) + billions[1] + and + wordCalculator(n % 1000000000)
+  );
 };
 
 /**

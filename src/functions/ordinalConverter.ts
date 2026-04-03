@@ -18,10 +18,7 @@ const converter = (n: number): string => {
     if (p2 === 'o') {
       return p1;
     }
-    if (p2 === 'u') {
-      return p2;
-    }
-    return '';
+    return p2;
   });
   word = word.replaceAll(/un\s/g, '');
   word = word.replaceAll(/ouno$/g, 'uno');

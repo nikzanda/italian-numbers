@@ -188,4 +188,7 @@ describe('invalid input', () => {
   test('random string === NaN', () => {
     expect(italianConverter('ciao')).toBe(NaN);
   });
+  test('invalid hundreds prefix === NaN', () => {
+    expect(italianConverter('blablacento')).toBeNaN();
+  });
 });

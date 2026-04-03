@@ -85,6 +85,15 @@ describe('threes tests', () => {
   });
 });
 
+describe('exact multi-billions', () => {
+  test('2000000000 === due miliardi', () => {
+    expect(cardinalConverter(2000000000)).toBe('due miliardi');
+  });
+  test('200000000000 === duecento miliardi', () => {
+    expect(cardinalConverter(200000000000)).toBe('duecento miliardi');
+  });
+});
+
 describe('min-max', () => {
   test('999999999999 === novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
     expect(cardinalConverter(999999999999)).toBe('novecentonovantanove miliardi e novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove');
