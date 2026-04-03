@@ -8,7 +8,7 @@ import {
   and,
 } from '../constants/constants';
 
-type Options = {
+export type CardinalConverterOptions = {
   includeDecimals?: boolean;
 }
 
@@ -115,7 +115,8 @@ const wordCalculator = (n: number): string => {
  * The valid range for the input number is -999999999999 to 999999999999.
  *
  * @param {number} number - The numeric value to convert. Must be a valid finite number.
- * @param {Options} options - Configuration options. Default is `{ includeDecimals: false }`.
+ * @param {CardinalConverterOptions} options - Configuration options.
+ * Default is `{ includeDecimals: false }`.
  * @param {boolean} [options.includeDecimals=false]
  * - Whether to include the decimal part in the result.
  *
@@ -138,7 +139,7 @@ const wordCalculator = (n: number): string => {
  */
 const cardinalConverter = (
   number: number,
-  options: Options = { includeDecimals: false },
+  options: CardinalConverterOptions = { includeDecimals: false },
 ): string => {
   if (Number.isNaN(number)) {
     throw new Error('not a number');

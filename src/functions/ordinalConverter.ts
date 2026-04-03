@@ -1,7 +1,7 @@
 import { zeroTenOrdinals } from '../constants/constants';
 import cardinalConverter from './cardinalConverter';
 
-type Options = {
+export type OrdinalConverterOptions = {
   female?: boolean;
   plural?: boolean;
 }
@@ -50,7 +50,7 @@ const converter = (n: number): string => {
  * A positive integer or Infinity. Must be a valid number (not NaN), less than
  * or equal to 999,999,999,999.
  * Infinity is represented as "infinitesimo".
- * @param {Options} options
+ * @param {OrdinalConverterOptions} options
  * Configuration options for the conversion.
  * - `options.female` (optional): If `true`, returns the representation in feminine form.
  * - `options.plural` (optional): If `true`, returns the representation in plural form.
@@ -107,7 +107,7 @@ const converter = (n: number): string => {
  */
 const ordinalConverter = (
   number: number,
-  options: Options = { female: false, plural: false },
+  options: OrdinalConverterOptions = { female: false, plural: false },
 ): string => {
   if (number < 0) {
     throw new Error('negative number not allowed');

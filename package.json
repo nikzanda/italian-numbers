@@ -14,6 +14,8 @@
       "default": "./dist/index.js"
     }
   },
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
   "sideEffects": false,
   "keywords": [
     "italian-numbers",

@@ -5,8 +5,9 @@ export default defineConfig({
   entry: ['src/index.ts'],
   format: ['cjs', 'esm', 'iife'],
   globalName: 'italianNumbers',
-  dts: true, // Generate declaration file (.d.ts)
+  dts: true,
   splitting: false,
   sourcemap: true,
   clean: true,
+  minify: true,
 });
