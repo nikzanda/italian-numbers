@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Converts numbers to Italian word representation and vice versa. Supports cardinal, ordinal, Roman numerals." />
   <title>italian-numbers</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
@@ -265,10 +266,10 @@
   </main>
 
   <footer>
-    Creato con ❤️ da <strong>Nicolò</strong> & <strong>Beatrice
+    Creato con ❤️ da <strong>Nicolò</strong> & <strong>Beatrice</strong>
   </footer>
 
-  <script defer src="https://unpkg.com/italian-numbers@latest/dist/index.global.js"></script>
+  <script defer src="https://unpkg.com/italian-numbers@^1/dist/index.global.js"></script>
   <script>
     function copyToClipboard(type) {
       const text = document.getElementById(`${type}-result`).innerText.trim();
@@ -299,7 +300,7 @@
     }
 
     function convertCardinal() {
-      const value = parseInt(document.getElementById('cardinal-input').value);
+      const value = parseFloat(document.getElementById('cardinal-input').value);
       try {
         const result = window.italianNumbers.cardinalConverter(value);
         updateOutput('cardinal', result);
@@ -349,6 +350,16 @@
         handleError('arabic', e);
       }
     }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Enter') return;
+      var id = e.target.id;
+      if (id === 'cardinal-input') convertCardinal();
+      else if (id === 'ordinal-input') convertOrdinal();
+      else if (id === 'italian-input') convertItalian();
+      else if (id === 'roman-input') convertRoman();
+      else if (id === 'arabic-input') convertArabic();
+    });
   </script>
 </body>
 
