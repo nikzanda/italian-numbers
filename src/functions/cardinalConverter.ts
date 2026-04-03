@@ -170,7 +170,7 @@ const cardinalConverter = (
   }
 
   if (result.includes('tre ')) {
-    result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
+    result = result.replace(/(?<=\w+)tre\s/g, 'tré ');
   }
 
   if (options.includeDecimals) {

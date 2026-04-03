@@ -20,9 +20,9 @@ const converter = (n: number): string => {
     }
     return p2;
   });
-  word = word.replaceAll(/un\s/g, '');
-  word = word.replaceAll(/ouno$/g, 'uno');
-  word = word.replaceAll(/ootto$/g, 'otto');
+  word = word.replace(/un\s/g, '');
+  word = word.replace(/ouno$/g, 'uno');
+  word = word.replace(/ootto$/g, 'otto');
   word = word.replaceAll(' ', '');
 
   const lastDigit = n % 10;
