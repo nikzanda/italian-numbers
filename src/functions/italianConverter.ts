@@ -1,11 +1,17 @@
 import { unitsDict, tensDict, zeroTenOrdinals } from '../constants/constants';
 
+const tensPrefixes = Object.keys(tensDict).map((w) => ({
+  prefix: w.slice(0, -1),
+  full: w,
+}));
+
 const tensConverter = (word: string): number => {
   if (unitsDict[word]) {
     return unitsDict[word];
   }
 
-  const ten = Object.keys(tensDict).find((w) => word.startsWith(w.slice(0, -1)));
+  const entry = tensPrefixes.find(({ prefix }) => word.startsWith(prefix));
+  const ten = entry?.full;
   if (!ten) {
     return NaN;
   }
@@ -93,38 +99,50 @@ const numberCalculator = (word: string): number => {
   return hundredsConverter(word);
 };
 
+const ordinalRules: [RegExp, string][] = [
+  [/decim\w$/, 'dieci'],
+  [/centesim\w$/, 'cento'],
+  [/^millesim\w$/, 'mille'],
+  [/millesim\w$/, 'mila'],
+  [/^milionesim\w$/, 'unmilione'],
+  [/milionesim\w$/, 'milioni'],
+  [/^miliardesim\w$/, 'unmiliardo'],
+  [/miliardesim\w$/, 'miliardi'],
+  [/ventesim\w$/, 'venti'],
+  [/ntesim\w$/, 'nta'],
+  [/unesim\w$/, 'uno'],
+  [/quattresim\w$/, 'quattro'],
+  [/ottesim\w$/, 'otto'],
+  [/duesim\w$/, 'due'],
+  [/cinquesim\w$/, 'cinque'],
+  [/settesim\w$/, 'sette'],
+  [/novesim\w$/, 'nove'],
+  [/undicesim\w$/, 'undici'],
+  [/dodicesim\w$/, 'dodici'],
+  [/tredicesim\w$/, 'tredici'],
+  [/quattordicesim\w$/, 'quattordici'],
+  [/quindicesim\w$/, 'quindici'],
+  [/sedicesim\w$/, 'sedici'],
+  [/esim\w$/, ''],
+];
+
+const postOrdinalRules: [RegExp, string][] = [
+  [/^milione/, 'unmilione'],
+  [/^miliard/, 'unmiliardo'],
+  [/centuno/, 'centouno'],
+  [/centotto/, 'centootto'],
+  [/miliarduno/, 'miliardouno'],
+  [/miliardotto/, 'miliardootto'],
+];
+
 const getNumberFromOrdinal = (ordinal: string): string => {
   let cardinal = ordinal;
-  cardinal = cardinal.replace(/decim\w$/, 'dieci');
-  cardinal = cardinal.replace(/centesim\w$/, 'cento');
-  cardinal = cardinal.replace(/^millesim\w$/, 'mille');
-  cardinal = cardinal.replace(/millesim\w$/, 'mila');
-  cardinal = cardinal.replace(/^milionesim\w$/, 'unmilione');
-  cardinal = cardinal.replace(/milionesim\w$/, 'milioni');
-  cardinal = cardinal.replace(/^miliardesim\w$/, 'unmiliardo');
-  cardinal = cardinal.replace(/miliardesim\w$/, 'miliardi');
-  cardinal = cardinal.replace(/ventesim\w$/, 'venti');
-  cardinal = cardinal.replace(/ntesim\w$/, 'nta');
-  cardinal = cardinal.replace(/unesim\w$/, 'uno');
-  cardinal = cardinal.replace(/quattresim\w$/, 'quattro');
-  cardinal = cardinal.replace(/ottesim\w$/, 'otto');
-  cardinal = cardinal.replace(/duesim\w$/, 'due');
-  cardinal = cardinal.replace(/cinquesim\w$/, 'cinque');
-  cardinal = cardinal.replace(/settesim\w$/, 'sette');
-  cardinal = cardinal.replace(/novesim\w$/, 'nove');
-  cardinal = cardinal.replace(/undicesim\w$/, 'undici');
-  cardinal = cardinal.replace(/dodicesim\w$/, 'dodici');
-  cardinal = cardinal.replace(/tredicesim\w$/, 'tredici');
-  cardinal = cardinal.replace(/quattordicesim\w$/, 'quattordici');
-  cardinal = cardinal.replace(/quindicesim\w$/, 'quindici');
-  cardinal = cardinal.replace(/sedicesim\w$/, 'sedici');
-  cardinal = cardinal.replace(/esim\w$/, '');
-  cardinal = cardinal.replace(/^milione/, 'unmilione');
-  cardinal = cardinal.replace(/^miliard/, 'unmiliardo');
-  cardinal = cardinal.replace(/centuno/, 'centouno');
-  cardinal = cardinal.replace(/centotto/, 'centootto');
-  cardinal = cardinal.replace(/miliarduno/, 'miliardouno');
-  cardinal = cardinal.replace(/miliardotto/, 'miliardootto');
+  ordinalRules.forEach(([pattern, replacement]) => {
+    cardinal = cardinal.replace(pattern, replacement);
+  });
+  postOrdinalRules.forEach(([pattern, replacement]) => {
+    cardinal = cardinal.replace(pattern, replacement);
+  });
   return cardinal;
 };
 
@@ -173,7 +191,7 @@ const italianConverter = (word: string): number => {
   }
 
   if (escapedWord === 'infinito') {
-    return Infinity;
+    return multiplier * Infinity;
   }
 
   if (escapedWord === 'zero') {

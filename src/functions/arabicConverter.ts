@@ -27,7 +27,7 @@ export const arabicConverter = (romanNumber: string): number => {
     return Infinity;
   }
 
-  if (!validRomanPattern.test(romanNumber)) {
+  if (!romanNumber || !validRomanPattern.test(romanNumber)) {
     throw new Error('invalid roman number');
   }
 

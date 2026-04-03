@@ -42,7 +42,7 @@ const hundredsConverter = (n: number): string => {
 };
 
 const wordCalculator = (n: number): string => {
-  const digitsNumber = Math.log(n) * Math.LOG10E + 1 | 0;
+  const digitsNumber = n === 0 ? 1 : Math.floor(Math.log10(n)) + 1;
 
   if (digitsNumber < 3) {
     return tensConverter(n);
@@ -150,6 +150,9 @@ const cardinalConverter = (
   if (number === Infinity) {
     return 'infinito';
   }
+  if (number === -Infinity) {
+    return 'meno infinito';
+  }
 
   if (number > 999999999999) {
     throw new Error('greater than 999999999999');
@@ -169,7 +172,9 @@ const cardinalConverter = (
     result = result.replace(/.$/, 'é');
   }
 
-  result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
+  if (result.includes('tre ')) {
+    result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
+  }
 
   if (options.includeDecimals) {
     const absStr = Math.abs(number).toString();
