@@ -108,7 +108,7 @@ const wordCalculator = (n: number): string => {
     );
   }
 
-  return 'oh my zsh';
+  throw new Error('number out of range');
 };
 
 /**
@@ -155,7 +155,7 @@ const cardinalConverter = (
     throw new Error('greater than 999999999999');
   }
   if (number < -999999999999) {
-    throw new Error('lower than 999999999999');
+    throw new Error('lower than -999999999999');
   }
 
   let prepend = '';
@@ -172,8 +172,10 @@ const cardinalConverter = (
   result = result.replaceAll(/(?<=\w+)tre\s/g, 'tré ');
 
   if (options.includeDecimals) {
-    const decimals = Math.abs(Math.floor((number * 100) % 100));
-    result = `${result}/${decimals.toString().padStart(2, '0')}`;
+    const absStr = Math.abs(number).toString();
+    const dotIndex = absStr.indexOf('.');
+    const decimalStr = dotIndex === -1 ? '00' : absStr.slice(dotIndex + 1, dotIndex + 3).padEnd(2, '0');
+    result = `${result}/${decimalStr}`;
   }
 
   return result;

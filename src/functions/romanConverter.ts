@@ -34,6 +34,10 @@ const romanConverter = (number: number): string => {
     return 'infinitum';
   }
 
+  if (!Number.isInteger(number)) {
+    throw new Error('not an integer');
+  }
+
   if (number > 3999) {
     throw new Error('greater than 3999');
   }

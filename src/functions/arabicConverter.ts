@@ -1,5 +1,6 @@
 import { romanNumerals } from '../constants/constants';
-import romanConverter from './romanConverter';
+
+const validRomanPattern = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
 
 /**
  * Converts a Roman numeral into its Arabic numeral representation.
@@ -26,8 +27,7 @@ export const arabicConverter = (romanNumber: string): number => {
     return Infinity;
   }
 
-  const romanLetters = Object.keys(romanNumerals);
-  if (Array.from(romanNumber).some((letter) => !romanLetters.includes(letter))) {
+  if (!validRomanPattern.test(romanNumber)) {
     throw new Error('invalid roman number');
   }
 
@@ -44,17 +44,6 @@ export const arabicConverter = (romanNumber: string): number => {
     }
 
     number += arabicNumber;
-  }
-
-  let isValid: boolean;
-  try {
-    isValid = romanNumber === romanConverter(number);
-  } catch {
-    throw new Error('invalid roman number');
-  }
-
-  if (!isValid) {
-    throw new Error('invalid roman number');
   }
 
   return number;

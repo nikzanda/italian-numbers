@@ -172,11 +172,11 @@ const italianConverter = (word: string): number => {
     escapedWord = escapedWord.replace('meno', '');
   }
 
-  if (word === 'infinito') {
+  if (escapedWord === 'infinito') {
     return Infinity;
   }
 
-  if (word === 'zero') {
+  if (escapedWord === 'zero') {
     return 0;
   }
 
