@@ -155,3 +155,9 @@ dist
 
 # npm github publish
 .npmrc
+
+# Claude Code
+.claude/memory/
+.claude/settings.local.json
+.claude/skills/*.local/
+.claude/agents/*.local.md
