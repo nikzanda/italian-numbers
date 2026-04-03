@@ -21,16 +21,16 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Lint
+      - name: Lint 🔍
         run: yarn lint
 
-      - name: Build
+      - name: Build 🔧
         run: yarn build
 
-      - name: Run tests
+      - name: Run tests 🧪
         run: yarn test
 
-      - name: Publish package on NPM
+      - name: Publish package on NPM 📦
         run: npx semantic-release
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

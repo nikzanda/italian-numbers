@@ -10,7 +10,7 @@ Works with positive and negative integers from **-999999999999** (meno novecento
 
 The representation can be a cardinal number (uno, due, tre...) or an ordinal number (primo, secondo, terzo). Ordinal numbers can also be translated in feminine form (prima, seconda, terza...), in plural form (primi, secondi, terzi...) or plural feminine (prime, seconde, terze...).
 
-Also works with `Infinity` (infinito).
+Also works with `Infinity` (infinito) and `-Infinity` (meno infinito).
 
 ### Converts an Arabic number to a Roman number and vice versa
 
@@ -29,7 +29,7 @@ npm install --save italian-numbers
 or
 
 ```sh
-yarn add --save italian-numbers
+yarn add italian-numbers
 ```
 
 ## Usage
